@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/my.css">
+
+    <title>Title</title>
+
+</head>
+<body>
+<nav class="navbar">
+  <a href="/">Главная</a>
+  <a href="/table">Список книг</a>
+  <a href="/save">Добавить</a>
+  <a href="/search">Поиск</a>
+</nav>
+
+  <h2>Поиск ТС по вашим критериям</h2>
+  <p>Выберите пожалуйста категорию книги и год выпуска, а затем нажмите кнопку поиска</p>
+
+  <form action="/search" method="post"  class="form-container">
+
+
+    <label for="field4">Категория:</label>
+    <select id="field4" name="field4">
+      <option value="Ужасы">Ужасы</option>
+      <option value="Триллер">Триллер</option>
+      <option value="Религия">Религия</option>
+      <option value="Романтика">Романтика</option>
+      <option value="Комедия">Комедия</option>
+    </select>
+
+
+
+    <label for="field6">Год выпуска:</label>
+    <input type="text" id="field6" name="field6" />
+
+
+
+    <button type="submit">Поиск</button>
+  </form>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Author</th>
+    <th>Category</th>
+    <th>Number</th>
+    <th>Year</th>
+    <th>Is Restricted</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="book : ${bookList}">
+    <td th:text="${book.getID()}"></td>
+    <td th:text="${book.getName()}"></td>
+    <td th:text="${book.getAuthor()}"></td>
+    <td th:text="${book.getCategory()}"></td>
+    <td th:text="${book.getNumber()}"></td>
+    <td th:text="${book.getYear()}"></td>
+    <td th:text="${book.isRestricted()} ? 'Yes' : 'No'"></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
